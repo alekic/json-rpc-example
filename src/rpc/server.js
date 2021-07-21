@@ -4,16 +4,9 @@ const { promisify } = require('util');
 const { JSON_RPC_VERSION } = require('.');
 const { isEmpty, isObject } = require('../util');
 const JsonRpcError = require('./error');
+const { argumentify, validate } = require('./params');
 const { hasValidId, isNotification, isValid } = require('./request');
 const { JsonRpcErrorResponse, JsonRpcSuccessResponse } = require('./response');
-
-function argumentify(args, params) {
-    if (isEmpty(args) || Array.isArray(args)) {
-        return args;
-    }
-
-    return params.map(param => args[param.name]);
-}
 
 class JsonRpcServer {
 
@@ -40,6 +33,8 @@ class JsonRpcServer {
     async callMethod(name, args) {
         const { fn, params, context } = this.methods[name];
         const argsArray = argumentify(args, params);
+
+        validate(argsArray, params);
 
         return fn.apply(context || this, argsArray);
     }

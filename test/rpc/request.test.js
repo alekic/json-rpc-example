@@ -80,7 +80,7 @@ describe('request', function () {
                 expect(hasValidParams({ params: {} })).to.be.true;
             });
 
-            it('should return true when params is an Array', function () {
+            it('should return true when params is an array', function () {
                 expect(hasValidParams({ params: [] })).to.be.true;
             });
 

@@ -17,7 +17,7 @@ describe('JsonRpcError', function () {
     });
 
     describe('toJson', function () {
-        it('should return error as a simple JSON Object', function () {
+        it('should return error as a simple JSON object', function () {
             const expected = {
                 code: -32700,
                 message: 'Parse error',

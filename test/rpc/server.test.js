@@ -212,7 +212,7 @@ describe('JsonRpcServer', function () {
             this.request = { jsonrpc: JSON_RPC_VERSION, id: 1, method: 'test' };
         });
 
-        context('when the rpc call succedes', function () {
+        context('when the rpc call succeeds', function () {
             it('should callback with Response containing the result', function (done) {
                 const expected = new JsonRpcSuccessResponse(
                     JSON_RPC_VERSION,
@@ -285,7 +285,7 @@ describe('JsonRpcServer', function () {
                 this.notification = { jsonrpc: JSON_RPC_VERSION, method: 'test' };
             });
 
-            it('should callback with no result when the rpc call succedes', function (done) {
+            it('should callback with no result when the rpc call succeeds', function (done) {
                 this.server.handleRequest(this.notification, function (err, response) {
                     expect(err).to.not.exist;
                     expect(response).to.not.exist;
