@@ -153,8 +153,8 @@ describe('JsonRpcServer', function () {
             this.request1 = { jsonrpc: JSON_RPC_VERSION, id: 1, method: 'method1' };
             this.request2 = { jsonrpc: JSON_RPC_VERSION, id: 2, method: 'method2' };
 
-            this.response1 = new JsonRpcSuccessResponse(JSON_RPC_VERSION, this.request1.id, 1);
-            this.response2 = new JsonRpcSuccessResponse(JSON_RPC_VERSION, this.request2.id, 2);
+            this.response1 = new JsonRpcSuccessResponse(this.request1.id, 1);
+            this.response2 = new JsonRpcSuccessResponse(this.request2.id, 2);
 
             this.server.handleRequest = sinon.stub();
             this.server.handleRequest.withArgs(this.request1).yields(null, this.response1);
@@ -165,7 +165,6 @@ describe('JsonRpcServer', function () {
 
         it("should callback with 'Invalid request' Response when batch is empty", function (done) {
             const expected = new JsonRpcErrorResponse(
-                JSON_RPC_VERSION,
                 null,
                 JsonRpcError.InvalidRequest().toJson()
             );
@@ -214,11 +213,7 @@ describe('JsonRpcServer', function () {
 
         context('when the rpc call succeeds', function () {
             it('should callback with Response containing the result', function (done) {
-                const expected = new JsonRpcSuccessResponse(
-                    JSON_RPC_VERSION,
-                    this.request.id,
-                    42
-                );
+                const expected = new JsonRpcSuccessResponse(this.request.id, 42);
 
                 this.server.handleRequest(this.request, function (err, response) {
                     expect(err).to.not.exist;
@@ -236,7 +231,6 @@ describe('JsonRpcServer', function () {
 
             it('should callback with Response containing the error data', function (done) {
                 const expected = new JsonRpcErrorResponse(
-                    JSON_RPC_VERSION,
                     this.request.id,
                     JsonRpcError.ApplicationError({
                         details: this.underlyingError.message
@@ -253,7 +247,6 @@ describe('JsonRpcServer', function () {
 
         it("should callback with 'Invalid request' Response when Request is invalid", function (done) {
             const expected = new JsonRpcErrorResponse(
-                JSON_RPC_VERSION,
                 null,
                 JsonRpcError.InvalidRequest().toJson()
             );
@@ -268,7 +261,6 @@ describe('JsonRpcServer', function () {
         it("should callback with 'Method not found' Response when method doesn't exist", function (done) {
             const request = { jsonrpc: JSON_RPC_VERSION, id: 1, method: 'foo' };
             const expected = new JsonRpcErrorResponse(
-                JSON_RPC_VERSION,
                 request.id,
                 JsonRpcError.MethodNotFound().toJson()
             );

@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const { JSON_RPC_VERSION } = require('../../rpc');
 const JsonRpcError = require('../../rpc/error');
 const { JsonRpcErrorResponse } = require('../../rpc/response');
 const { isEmpty } = require('../../util');
@@ -30,14 +29,12 @@ module.exports = {
     errorHandler: (err, req, res, next) => {
         if (err.type === 'entity.parse.failed') {
             return res.status(err.status).send(new JsonRpcErrorResponse(
-                JSON_RPC_VERSION,
                 null,
                 JsonRpcError.ParseError().toJson()
             ));
         }
 
         res.status(500).send(new JsonRpcErrorResponse(
-            JSON_RPC_VERSION,
             null,
             JsonRpcError.InternalError().toJson()
         ));

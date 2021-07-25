@@ -1,7 +1,7 @@
 'use strict';
 
 const JsonRpcError = require('../rpc/error');
-const { isObject } = require("../util");
+const { isObject } = require('../util');
 
 function argumentify(args, params) {
     if (Array.isArray(args)) {

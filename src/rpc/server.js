@@ -1,7 +1,6 @@
 'use strict';
 
 const { promisify } = require('util');
-const { JSON_RPC_VERSION } = require('.');
 const { isEmpty, isObject } = require('../util');
 const JsonRpcError = require('./error');
 const { argumentify, validate } = require('./params');
@@ -104,11 +103,7 @@ class JsonRpcServer {
             return callback();
         }
 
-        callback(null, new JsonRpcSuccessResponse(
-            JSON_RPC_VERSION,
-            request.id,
-            result
-        ));
+        callback(null, new JsonRpcSuccessResponse(request.id, result));
     }
 
     handleError(error, request, callback) {
@@ -125,7 +120,6 @@ class JsonRpcServer {
             && hasValidId(request);
 
         callback(null, new JsonRpcErrorResponse(
-            JSON_RPC_VERSION,
             hasId ? request.id : null,
             jsonRpcError.toJson()
         ));

@@ -1,25 +1,27 @@
 'use strict';
 
+const { JSON_RPC_VERSION } = require('.');
+
 class JsonRpcResponse {
 
-    constructor(jsonrpc, id) {
-        this.jsonrpc = jsonrpc;
+    constructor(id) {
+        this.jsonrpc = JSON_RPC_VERSION;
         this.id = id;
     }
 }
 
 class JsonRpcErrorResponse extends JsonRpcResponse {
 
-    constructor(jsonrpc, id, error) {
-        super(jsonrpc, id);
+    constructor(id, error) {
+        super(id);
         this.error = error;
     }
 }
 
 class JsonRpcSuccessResponse extends JsonRpcResponse {
 
-    constructor(jsonrpc, id, result) {
-        super(jsonrpc, id);
+    constructor(id, result) {
+        super(id);
         this.result = result;
     }
 }
