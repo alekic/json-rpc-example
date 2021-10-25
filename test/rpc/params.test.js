@@ -38,7 +38,7 @@ describe('params', function () {
             expect(() => validate(args, params))
                 .to.throw(JsonRpcError, 'Invalid params')
                 .with.nested.property('data.details',
-                    "Parameter 'name' is required"
+                    "Parameter 'name' is required."
                 );
         });
 
@@ -54,7 +54,7 @@ describe('params', function () {
                 .to.throw(JsonRpcError, 'Invalid params')
                 .with.nested.property('data.details',
                     "Invalid type for parameter 'phone': " +
-                    "expected string but received number"
+                    "expected 'string' but received 'number'."
                 );
         });
     });

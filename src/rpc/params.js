@@ -23,7 +23,7 @@ function validate(args, params) {
 
         if (isRequired && (arg === undefined)) {
             throw JsonRpcError.InvalidParams({
-                details: `Parameter '${param.name}' is required`
+                details: `Parameter '${param.name}' is required.`
             });
         }
 
@@ -33,7 +33,7 @@ function validate(args, params) {
         ) {
             throw JsonRpcError.InvalidParams({
                 details: `Invalid type for parameter '${param.name}': ` +
-                    `expected ${param.type} but received ${argType}`
+                    `expected '${param.type}' but received '${argType}'.`
             });
         }
     }
