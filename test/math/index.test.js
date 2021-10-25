@@ -18,7 +18,7 @@ describe('math', function () {
         it('should throw when dividing by zero', function () {
             expect(() => divide(3, 0))
                 .to.throw(ArithmeticError)
-                .with.nested.property('data.details', 'Cannot divide by zero');
+                .with.nested.property('data.details', 'Cannot divide by zero.');
         });
     });
 

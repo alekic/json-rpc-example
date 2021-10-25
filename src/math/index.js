@@ -16,7 +16,7 @@ module.exports = {
     divide: function (dividend, divisor) {
         if (divisor === 0) {
             throw new ArithmeticError({
-                details: 'Cannot divide by zero'
+                details: 'Cannot divide by zero.'
             });
         }
 
