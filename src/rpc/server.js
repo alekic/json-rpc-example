@@ -89,13 +89,9 @@ class JsonRpcServer {
             );
         }
 
-        const result = this.callMethod(request.method, request.params);
-
-        result.then(value => {
-            this.handleSuccess(value, request, callback);
-        }).catch(error => {
-            this.handleError(error, request, callback);
-        });
+        this.callMethod(request.method, request.params)
+            .then(result => this.handleSuccess(result, request, callback))
+            .catch(error => this.handleError(error, request, callback));
     }
 
     handleSuccess(result, request, callback) {
