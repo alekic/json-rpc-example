@@ -1,7 +1,7 @@
 'use strict';
 
 const math = require('../../math');
-const JsonRpcServer = require('../../rpc/server');
+const { JsonRpcServer } = require('@alekic/json-rpc');
 
 function hello(name) {
     return new Promise(resolve => {

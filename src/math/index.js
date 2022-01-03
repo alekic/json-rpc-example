@@ -1,6 +1,6 @@
 'use strict';
 
-const JsonRpcError = require('../rpc/error');
+const { JsonRpcError } = require('@alekic/json-rpc');
 const { isEmpty } = require('../util');
 
 class ArithmeticError extends JsonRpcError {

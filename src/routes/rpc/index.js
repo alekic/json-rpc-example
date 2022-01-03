@@ -1,8 +1,7 @@
 'use strict';
 
 const express = require('express');
-const JsonRpcError = require('../../rpc/error');
-const { JsonRpcErrorResponse } = require('../../rpc/response');
+const { JsonRpcError, JsonRpcErrorResponse } = require('@alekic/json-rpc');
 const { isEmpty } = require('../../util');
 const server = require('./server');
 
