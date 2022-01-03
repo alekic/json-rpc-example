@@ -1,6 +1,6 @@
 # json-rpc-example
 
-Implementation of [JSON-RPC 2.0](https://www.jsonrpc.org/specification) in Node.js.
+Example of using [node-json-rpc](https://github.com/alekic/node-json-rpc) with Express.
 
 ## Integration tests
 
