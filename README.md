@@ -1,6 +1,6 @@
 # json-rpc-example
 
-Example of using [node-json-rpc](https://github.com/alekic/node-json-rpc) with Express.
+Example of using [json-rpc-node](https://github.com/alekic/json-rpc-node) with Express.
 
 ## Integration tests
 
